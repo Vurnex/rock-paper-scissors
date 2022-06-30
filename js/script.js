@@ -2,7 +2,7 @@ function computerPlay() {
 
     const options = ["rock", "paper", "scissors"];
 
-    //Math.random chooses a random number. Multiply by the array length to get length of the array. Math.floor chooses a random index.
+    //Math.random chooses a random number. Multiply by the array length to get length of the array. Math.floor chooses a random index of the array.
     let chosenOption = options[Math.floor(Math.random() * options.length)];
 
     return chosenOption;
@@ -26,6 +26,7 @@ function playRound(playerSelection, computerSelection) {
     ) {
 
         console.log("You win! " + playerSelection + " beats " + computerSelection);
+        playerScore++;
     }
     else if (   //Computer wins
         (computerSelection == "rock" && playerSelection == "scissors") ||
@@ -34,11 +35,15 @@ function playRound(playerSelection, computerSelection) {
     ) {
 
         console.log("You lose! " + computerSelection + " beats " + playerSelection);
+        computerScore++;
     }
 
 }
 
 function game() {
+
+    playerScore = 0;
+    computerScore = 0;
 
     for (var i = 1; i < 6; i++) {
 
@@ -67,22 +72,28 @@ function game() {
 
         playRound(correctedSelection, computerSelection);
 
+        console.log(`Current Scores: Player: ${playerScore} | Computer: ${computerScore}`);
+
         let confirmAction = confirm("Continue to the next round?");
 
         if (confirmAction) {
 
-            
             console.clear();
             continue;
         }
         else {
-            console.log("The game has ended.");
+
             break;
         }
 
     }
 
+    console.log("The game is over. The player's final score is " + playerScore + " and the computer's final score is " + computerScore + ". Refresh the page to play again.");
+
 }
+
+let playerScore = 0;
+let computerScore = 0;
 
 game(); //Start the game
 
