@@ -5,39 +5,35 @@ function computerPlay() {
     //Math.random chooses a random number. Multiply by the array length to get length of the array. Math.floor chooses a random index.
     let chosenOption = options[Math.floor(Math.random() * options.length)];
 
-    console.log(chosenOption);
-
     return chosenOption;
 }
 
 function playRound(playerSelection, computerSelection) {
-
-    let inputCorrection = playerSelection.toLowerCase();
     
     //Both selections are the same
     if (
-        (inputCorrection == "rock" && computerSelection == "rock") ||
-        (inputCorrection == "paper" && computerSelection == "paper") ||
-        (inputCorrection == "scissors" && computerSelection == "scissors")  
+        (playerSelection == "rock" && computerSelection == "rock") ||
+        (playerSelection == "paper" && computerSelection == "paper") ||
+        (playerSelection == "scissors" && computerSelection == "scissors")  
     ) {
 
         console.log("This match was a tie.");
     }
     else if (   //Player wins  
-        (inputCorrection == "rock" && computerSelection == "scissors") ||
-        (inputCorrection == "paper" && computerSelection == "rock") ||
-        (inputCorrection == "scissors" && computerSelection == "paper")
+        (playerSelection == "rock" && computerSelection == "scissors") ||
+        (playerSelection == "paper" && computerSelection == "rock") ||
+        (playerSelection == "scissors" && computerSelection == "paper")
     ) {
 
-        console.log("You win! " + inputCorrection + " beats " + computerSelection);
+        console.log("You win! " + playerSelection + " beats " + computerSelection);
     }
     else if (   //Computer wins
-        (computerSelection == "rock" && inputCorrection == "scissors") ||
-        (computerSelection == "paper" && inputCorrection == "rock") ||
-        (computerSelection == "scissors" && inputCorrection == "paper")
+        (computerSelection == "rock" && playerSelection == "scissors") ||
+        (computerSelection == "paper" && playerSelection == "rock") ||
+        (computerSelection == "scissors" && playerSelection == "paper")
     ) {
 
-        console.log("You lose! " + computerSelection + " beats " + inputCorrection);
+        console.log("You lose! " + computerSelection + " beats " + playerSelection);
     }
 
 }
@@ -51,18 +47,36 @@ function game() {
         let playerSelection = prompt("Enter rock, paper, or scissors");
         let computerSelection = computerPlay();
 
-        console.log("The player chose " + playerSelection + " . The computer chose " + computerSelection);
+        //Input Validation
+        if (playerSelection == null) {
 
-        playRound(playerSelection, computerSelection);
+            game();
+        }
+
+        let correctedSelection = playerSelection.toLowerCase();
+
+        //Input Validation
+        if (correctedSelection !== "rock" && correctedSelection !== "paper" && correctedSelection !== "scissors") {
+    
+            alert("You must enter one of the correct options.");
+            console.clear();
+            game();
+        }
+
+        console.log("The player chose " + correctedSelection + ". The computer chose " + computerSelection);
+
+        playRound(correctedSelection, computerSelection);
 
         let confirmAction = confirm("Continue to the next round?");
 
         if (confirmAction) {
 
+            
+            console.clear();
             continue;
         }
         else {
-
+            console.log("The game has ended.");
             break;
         }
 
