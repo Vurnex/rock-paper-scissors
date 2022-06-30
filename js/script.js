@@ -42,7 +42,33 @@ function playRound(playerSelection, computerSelection) {
 
 }
 
-let playerSelection = prompt("Enter rock, paper, or scissors");
-const computerSelection = computerPlay();
+function game() {
 
-playRound(playerSelection, computerSelection);
+    for (var i = 1; i < 6; i++) {
+
+        console.log("Round " + i);
+
+        let playerSelection = prompt("Enter rock, paper, or scissors");
+        let computerSelection = computerPlay();
+
+        console.log("The player chose " + playerSelection + " . The computer chose " + computerSelection);
+
+        playRound(playerSelection, computerSelection);
+
+        let confirmAction = confirm("Continue to the next round?");
+
+        if (confirmAction) {
+
+            continue;
+        }
+        else {
+
+            break;
+        }
+
+    }
+
+}
+
+game(); //Start the game
+
