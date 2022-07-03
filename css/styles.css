@@ -37,3 +37,11 @@ h1, p {
     margin-bottom: 30px;
     border: 1px solid;
 }
+
+button {
+
+    height: 108px;
+    margin-bottom: 30px;
+    padding: 0;
+
+}
