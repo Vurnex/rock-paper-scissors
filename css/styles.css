@@ -1,9 +1,9 @@
-#computer-img {
+#computer-img1, #computer-img2, #computer-img3 {
 
     transform: scaleX(-1); /* Flip image horizontally */
 }
 
-h1, p {
+h1, h2, p {
 
     text-align: center;
     margin-bottom: 30px;
@@ -13,7 +13,7 @@ h1, p {
 
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .main-container {
@@ -41,6 +41,16 @@ button {
     margin-bottom: 30px;
     padding: 0;
 
+}
+
+.selected {
+
+    border: 3px solid black;
+}
+
+.transparency {
+
+    opacity: 50%;
 }
 
 .shake {

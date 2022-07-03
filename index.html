@@ -21,6 +21,8 @@
 
     <p>A simple rock paper scissors game.</p>
 
+    <h2 id="round">Round </h2>
+
     <div class="img-container">
 
       <div class="main-container">
@@ -29,28 +31,31 @@
 
         <div class="rock-container" id="rock-shake">
 
-          <button onclick="animation()"><img src="img/rock.jpg" alt="Rock Sign" width="100" height="100" class="img-space"></button>
-          <img src="img/rock.jpg" alt="Rock Sign" width="100" height="100" class="img-space" id="computer-img">
+          <button onclick="animation(this.id)" id="rock"><img src="img/rock.jpg" alt="Rock Sign" width="100" height="100" class="img-space"></button>
+          <img src="img/rock.jpg" alt="Rock Sign" width="100" height="100" class="img-space" id="computer-img1">
 
         </div>
 
         <div class="paper-container">
 
-          <button onclick="animation()"><img src="img/paper.jpg" alt="Rock Sign" width="100" height="100" class="img-space"></button>
-          <img src="img/paper.jpg" alt="Rock Sign" width="100" height="100" class="img-space" id="computer-img">
+          <button onclick="animation(this.id)" id="paper"><img src="img/paper.jpg" alt="Paper Sign" width="100" height="100" class="img-space"></button>
+          <img src="img/paper.jpg" alt="Paper Sign" width="100" height="100" class="img-space" id="computer-img2">
 
         </div>
 
         <div class="scissors-container">
 
-          <button onclick="animation()"><img src="img/scissors.jpg" alt="Rock Sign" width="100" height="100" class="img-space"></button>
-          <img src="img/scissors.jpg" alt="Rock Sign" width="100" height="100" class="img-space" id="computer-img">
+          <button onclick="animation(this.id)" id="scissors"><img src="img/scissors.jpg" alt="Scissors Sign" width="100" height="100" class="img-space"></button>
+          <img src="img/scissors.jpg" alt="Scissors Sign" width="100" height="100" class="img-space" id="computer-img3">
 
         </div>
 
       </div>
 
     </div>
+
+    <p class="score1">Player Score: </p>
+    <p class="score2">Computer Score: </p>
 
     <script type="text/javascript" src="js/script.js"></script>
   </body>

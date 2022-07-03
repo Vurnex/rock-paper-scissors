@@ -5,6 +5,8 @@ function computerPlay() {
     //Math.random chooses a random number. Multiply by the array length to get length of the array. Math.floor chooses a random index of the array.
     let chosenOption = options[Math.floor(Math.random() * options.length)];
 
+    checkComputerInput(chosenOption);
+
     return chosenOption;
 }
 
@@ -47,7 +49,7 @@ function game() {
 
     for (var i = 1; i < 6; i++) {
 
-        console.log("Round " + i);
+        document.getElementById('round').textContent = `Round ${i}`;
 
         let playerSelection = prompt("Enter rock, paper, or scissors");
         let computerSelection = computerPlay();
@@ -92,7 +94,10 @@ function game() {
 
 }
 
-function animation() {
+function animation(selectedButton) {
+
+
+    console.log(selectedButton);
 
     const element = document.getElementById('rock-shake');
 
@@ -102,10 +107,77 @@ function animation() {
     
     element.classList.add('shake'); // start animation
 
+    checkPlayerInput(selectedButton);
+
+}
+
+function checkPlayerInput(selectedButton) {
+
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+
+    const rockButton = document.getElementById('rock');
+    const paperButton = document.getElementById('paper');
+    const scissorsButton = document.getElementById('scissors');
+    
+    if (selectedButton == "rock") {
+
+        rockButton.classList.add('selected');
+
+        paperButton.classList.add('transparency');
+        scissorsButton.classList.add('transparency');
+    }
+    else if (selectedButton == "paper") {
+
+        paperButton.classList.add('selected');
+
+        rockButton.classList.add('transparency');
+        scissorsButton.classList.add('transparency');
+    }
+    else if (selectedButton == "scissors") {
+
+        scissorsButton.classList.add('selected');
+
+        rockButton.classList.add('transparency');
+        paperButton.classList.add('transparency');
+    }
+
+    setTimeout(computerPlay, 2100); //  wait for animation to finish
+
+}
+
+function checkComputerInput(selectedButton) {
+
+    const rockButton = document.getElementById('computer-img1');
+    const paperButton = document.getElementById('computer-img2');
+    const scissorsButton = document.getElementById('computer-img3');
+    
+    if (selectedButton == "rock") {
+
+        rockButton.classList.add('selected');
+
+        paperButton.classList.add('transparency');
+        scissorsButton.classList.add('transparency');
+    }
+    else if (selectedButton == "paper") {
+
+        paperButton.classList.add('selected');
+
+        rockButton.classList.add('transparency');
+        scissorsButton.classList.add('transparency');
+    }
+    else if (selectedButton == "scissors") {
+
+        scissorsButton.classList.add('selected');
+
+        rockButton.classList.add('transparency');
+        paperButton.classList.add('transparency');
+    }
+
 }
 
 let playerScore = 0;
 let computerScore = 0;
 
-//game(); //Start the game
-
+//game(); //    Start the game
