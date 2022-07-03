@@ -95,5 +95,5 @@ function game() {
 let playerScore = 0;
 let computerScore = 0;
 
-game(); //Start the game
+//game(); //Start the game
 

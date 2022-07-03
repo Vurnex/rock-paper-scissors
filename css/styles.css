@@ -1,0 +1,39 @@
+#computer-img {
+
+    transform: scaleX(-1); /* Flip image horizontally */
+}
+
+h1, p {
+
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.img-container {
+
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    margin-top: 50px;
+}
+
+.player-container, .computer-container {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+}
+
+.player-img-container, .computer-img-container {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.img-space {
+
+    margin-bottom: 30px;
+    border: 1px solid;
+}
