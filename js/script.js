@@ -92,6 +92,18 @@ function game() {
 
 }
 
+function animation() {
+
+    const element = document.getElementById('rock-shake');
+
+    element.classList.remove('shake'); // reset animation
+
+    void element.offsetWidth; // trigger reflow
+    
+    element.classList.add('shake'); // start animation
+
+}
+
 let playerScore = 0;
 let computerScore = 0;
 

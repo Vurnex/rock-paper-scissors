@@ -13,23 +13,20 @@ h1, p {
 
     display: flex;
     justify-content: center;
-    gap: 3em;
     margin-top: 50px;
 }
 
-.player-container, .computer-container {
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 2em;
-}
-
-.player-img-container, .computer-img-container {
+.main-container {
 
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
 
+.rock-container, .paper-container, .scissors-container {
+
+    display: flex;
+    gap: 2em;
 }
 
 .img-space {
@@ -43,5 +40,22 @@ button {
     height: 108px;
     margin-bottom: 30px;
     padding: 0;
+
+}
+
+.shake {
+    
+    animation-name: shake; 
+    animation-iteration-count: 1;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+
+}
+
+@keyframes shake {
+
+    3%, 21%, 39%, 57%, 74%, 92% { transform: translateY(5px) }
+    6%, 24%, 42%, 60%, 77%, 95% { transform: translateY(3px) }
+    9%, 27%, 45%, 63%, 80%, 98% { transform: translateY(-5px) }
 
 }
