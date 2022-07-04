@@ -5,7 +5,9 @@ function computerPlay() {
     //Math.random chooses a random number. Multiply by the array length to get length of the array. Math.floor chooses a random index of the array.
     let chosenOption = options[Math.floor(Math.random() * options.length)];
 
-    checkComputerInput(chosenOption);
+    computerOption = chosenOption;
+
+    checkComputerInput(computerOption);
 
     return chosenOption;
 }
@@ -44,60 +46,21 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
-    playerScore = 0;
-    computerScore = 0;
+    playRound(playerOption, computerOption);
 
-    for (var i = 1; i < 6; i++) {
+    //console.log(`Current Scores: Player: ${playerScore} | Computer: ${computerScore}`);
 
-        document.getElementById('round').textContent = `Round ${i}`;
+    document.getElementById('score1').textContent = `Player Score: ${playerScore}`;
+    document.getElementById('score2').textContent = `Computer Score: ${computerScore}`;
 
-        let playerSelection = prompt("Enter rock, paper, or scissors");
-        let computerSelection = computerPlay();
+    continueVisible();
 
-        //Input Validation
-        if (playerSelection == null) {
 
-            game();
-        }
-
-        let correctedSelection = playerSelection.toLowerCase();
-
-        //Input Validation
-        if (correctedSelection !== "rock" && correctedSelection !== "paper" && correctedSelection !== "scissors") {
-    
-            alert("You must enter one of the correct options.");
-            console.clear();
-            game();
-        }
-
-        console.log("The player chose " + correctedSelection + ". The computer chose " + computerSelection);
-
-        playRound(correctedSelection, computerSelection);
-
-        console.log(`Current Scores: Player: ${playerScore} | Computer: ${computerScore}`);
-
-        let confirmAction = confirm("Continue to the next round?");
-
-        if (confirmAction) {
-
-            console.clear();
-            continue;
-        }
-        else {
-
-            break;
-        }
-
-    }
-
-    console.log("The game is over. The player's final score is " + playerScore + " and the computer's final score is " + computerScore + ". Refresh the page to play again.");
+    //console.log("The game is over. The player's final score is " + playerScore + " and the computer's final score is " + computerScore + ". Refresh the page to play again.");
 
 }
 
-function animation(selectedButton) {
-
-
-    console.log(selectedButton);
+function animation() {
 
     const element = document.getElementById('rock-shake');
 
@@ -106,8 +69,6 @@ function animation(selectedButton) {
     void element.offsetWidth; // trigger reflow
     
     element.classList.add('shake'); // start animation
-
-    checkPlayerInput(selectedButton);
 
 }
 
@@ -175,9 +136,124 @@ function checkComputerInput(selectedButton) {
         paperButton.classList.add('transparency');
     }
 
+    game();
+
+}
+
+function resetRound() {
+
+    if (currentRound == 6) {
+
+        document.getElementById('round').textContent = `Round 5 / 5`;
+        endGame();
+        return;
+    }
+
+    document.getElementById("rock").disabled = false;
+    document.getElementById("paper").disabled = false;
+    document.getElementById("scissors").disabled = false;
+
+    const rockButton = document.getElementById('rock');
+    const paperButton = document.getElementById('paper');
+    const scissorsButton = document.getElementById('scissors');
+
+    const rockButton2 = document.getElementById('computer-img1');
+    const paperButton2 = document.getElementById('computer-img2');
+    const scissorsButton2 = document.getElementById('computer-img3');
+
+
+    rockButton.classList.remove('selected', 'transparency');
+    paperButton.classList.remove('selected','transparency');
+    scissorsButton.classList.remove('selected','transparency');
+
+    rockButton2.classList.remove('selected', 'transparency');
+    paperButton2.classList.remove('selected','transparency');
+    scissorsButton2.classList.remove('selected','transparency');
+
+}
+
+function continueVisible() {
+
+    $("#continue-para").toggle();
+    $("#continue-btns").toggle();
+
+}
+
+function continueGame(selectedOption) {
+
+    if (selectedOption == "Yes") {
+
+        currentRound++;
+        document.getElementById('round').textContent = `Round ${currentRound} / 5`;
+        continueVisible();
+        resetRound();
+    }
+    else if (selectedOption == "No") {
+
+        continueVisible();
+        endGame();
+    }
+}
+
+function endGame() {
+
+    const rockButton = document.getElementById('rock');
+    const paperButton = document.getElementById('paper');
+    const scissorsButton = document.getElementById('scissors');
+
+    const rockButton2 = document.getElementById('computer-img1');
+    const paperButton2 = document.getElementById('computer-img2');
+    const scissorsButton2 = document.getElementById('computer-img3');
+
+    document.getElementById("rock").disabled = true;
+    document.getElementById("paper").disabled = true;
+    document.getElementById("scissors").disabled = true;
+
+
+    rockButton.classList.add('transparency');
+    paperButton.classList.add('transparency');
+    scissorsButton.classList.add('transparency');
+
+    rockButton2.classList.add('transparency');
+    paperButton2.classList.add('transparency');
+    scissorsButton2.classList.add('transparency');
+
+    $("#end-msg").toggle();
+
+    if (playerScore > computerScore) {
+
+        document.getElementById('end-msg').textContent = "The game is over. The Player wins. Refresh the page or press F5 to play again.";
+
+    }
+    else if (computerScore > playerScore) {
+
+        document.getElementById('end-msg').textContent = "The game is over. The Computer wins. Refresh the page or press F5 to play again.";
+
+    }
+    else if (playerScore == computerScore) {
+
+        document.getElementById('end-msg').textContent = "The game is over. The match was a tie. Refresh the page or press F5 to play again.";
+    }
+
+
+}
+
+function main(selectedButton) {
+
+    playerOption = selectedButton;
+
+    animation();
+
+    checkPlayerInput(playerOption);
+
 }
 
 let playerScore = 0;
 let computerScore = 0;
+let currentRound = 1;
+let playerOption = "";
+let computerOption ="";
 
-//game(); //    Start the game
+//Make items invisible at start
+continueVisible();
+$("#end-msg").toggle();

@@ -35,7 +35,7 @@ h1, h2, p {
     border: 1px solid;
 }
 
-button {
+.img-btn {
 
     height: 108px;
     margin-bottom: 30px;
@@ -51,6 +51,28 @@ button {
 .transparency {
 
     opacity: 50%;
+}
+
+.continue {
+
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-top: auto;
+}
+
+.continue-btn {
+
+    height: 30px;
+    width: 50px;
+}
+
+.scores {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
 }
 
 .shake {
