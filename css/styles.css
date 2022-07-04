@@ -1,3 +1,8 @@
+body {
+
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
 #computer-img1, #computer-img2, #computer-img3 {
 
     transform: scaleX(-1); /* Flip image horizontally */
